@@ -43,7 +43,7 @@ RUN git clone https://github.com/runew0lf/RuinedFooocus /ruinedfooocus-code
 
 # Install Python dependencies.  This uses pip to install the
 # packages listed in the requirements.txt file.
-RUN pip3 install -r /ruinedfooocus-code/requirements.txt
+RUN pip3 install -r /ruinedfooocus-code/requirements_versions.txt
 
 # Set the working directory.  This is the directory where commands
 # like `CMD` and `ENTRYPOINT` will be executed.
