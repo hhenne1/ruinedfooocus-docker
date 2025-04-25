@@ -16,12 +16,12 @@
 set -e
 
 # Set variables.  Customize these as needed.
-GHCR_USERNAME="hhenne1" # Replace with your GitHub username.
+GHCR_USERNAME="hhenne" # Replace with your GitHub username.
 IMAGE_NAME="ruinedfooocus" #  The name of the image
 TAG="latest" # default tag
 
-# Build the Docker image.
-docker build -t ${IMAGE_NAME}:${TAG} .
+# Build the Docker image from the submodule directory.
+docker build -t ${IMAGE_NAME}:${TAG} ./ruinedfooocus-code
 
 # Tag the image for GHCR.
 docker tag ${IMAGE_NAME}:${TAG} ghcr.io/${GHCR_USERNAME}/${IMAGE_NAME}:${TAG}

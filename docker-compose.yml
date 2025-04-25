@@ -1,9 +1,10 @@
 version: '3.8'
 services:
   ruinedfooocus:
-    image: ghcr.io/hhenne1/ruinedfooocus:latest # Change this if you use a different username or image name
+    image: ghcr.io/hhenne/ruinedfooocus:latest # Change this if you use a different username or image name
     ports:
       - 7860:7860
     volumes:
-      - ./outputs:/app/outputs # Mount a local directory for outputs
+      - ./ruinedfooocus-code:/app  # Mount the RuinedFooocus code
+      - ./outputs:/app/outputs     # Mount a local directory for outputs
     restart: unless-stopped

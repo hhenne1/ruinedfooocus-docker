@@ -4,9 +4,10 @@
 # It's designed to:
 #   1. Use an Ubuntu base image.
 #   2. Install necessary dependencies (git, python3, pip).
-#   3. Clone the RuinedFooocus repository.
-#   4. Set up the required environment.
-#   5. Define the entrypoint to run RuinedFooocus.
+#   3. Install any additional dependencies.
+#   4. Clone the RuinedFooocus repository.
+#   5. Set up the required environment.
+#   6. Define the entrypoint to run RuinedFooocus.
 #
 # Key differences from a generic Python Dockerfile:
 #   - Explicitly clones the RuinedFooocus repository.
@@ -18,7 +19,7 @@
 FROM ubuntu:22.04
 
 # Prevent interactive prompts during package installation.  This is
-# crucial forDockerfile builds to ensure they can be automated.
+# crucial for Dockerfile builds to ensure they can be automated.
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies.  These are the tools needed to
@@ -36,22 +37,17 @@ RUN apt-get update && \
 RUN pip3 install --upgrade pip
 
 # Clone the RuinedFooocus repository.  This downloads the application
-# source code into the container.
-RUN git clone https://github.com/runew0lf/RuinedFooocus /app
+# source code into the container.  We clone it outside of /app
+# so that the Dockerfile and other files can reside in /app.
+RUN git clone https://github.com/runew0lf/RuinedFooocus /ruinedfooocus-code
 
 # Install Python dependencies.  This uses pip to install the
 # packages listed in the requirements.txt file.
-RUN pip3 install -r /app/requirements.txt
-
-# Copy the entire application.  While the clone already put it in
-# /app, this ensures that any local changes in the same directory
-# as the Dockerfile get copied into the image.  If the clone is
-# sufficient, this can be removed.
-# COPY . /app
+RUN pip3 install -r /ruinedfooocus-code/requirements.txt
 
 # Set the working directory.  This is the directory where commands
 # like `CMD` and `ENTRYPOINT` will be executed.
-WORKDIR /app
+WORKDIR /ruinedfooocus-code
 
 # Define the entrypoint.  This is the command that will be run
 # when the container starts.  It assumes that RuinedFooocus is run
@@ -74,4 +70,4 @@ EXPOSE 7860
 # Add a volume.  This is good practice to allow the user to mount
 # a directory from the host machine.  This is commonly used for
 # storing generated images, models, or configuration.
-VOLUME /app/outputs
+VOLUME /ruinedfooocus-code/outputs
