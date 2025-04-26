@@ -17,7 +17,7 @@ COPY . /app
 COPY ruinedfooocus-code/requirements_versions.txt /app/requirements_versions.txt
 RUN pip3 install -r requirements_versions.txt
 # Copy the RuinedFooocus code from the submodule.
-COPY ruinedfooocus-code /app
+COPY ruinedfooocus-code/ /app/
 # Expose the port that RuinedFooocus listens on
 EXPOSE 7860
 
