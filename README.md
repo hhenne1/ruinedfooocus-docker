@@ -1,1 +1,1 @@
-docker-image for ruinedfooocus:develop
+docker-image for ruinedfooocus:development
