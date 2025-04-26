@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install necessary dependencies (e.g., Python, git)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    python3 python3-dev python3.10-devel python3-pip git python3-venv && \
+    python3 python3-dev python3-pip git python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
@@ -19,7 +19,8 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip3 install -r requirements_versions.txt
 RUN pip3 install gfpgan==1.3.8 filterpy
-RUN pip3 install insightface==0.7.3
+#RUN pip3 install insightface==0.7.3
+RUN pip3 install insightface
 
 # Expose the port that RuinedFooocus listens on
 EXPOSE 7865
