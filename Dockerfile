@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install necessary dependencies (e.g., Python, git)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    python3 python3-dev python3-pip git python3-venv && \
+    python3 python3-dev python3.10-devel python3-pip git python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
