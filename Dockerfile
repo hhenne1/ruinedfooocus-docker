@@ -16,7 +16,7 @@ COPY ruinedfooocus-code/requirements_versions.txt /app/requirements_versions.txt
 RUN pip3 install -r requirements_versions.txt
 
 # Copy the RuinedFooocus code from the submodule
-COPY ruinedfooocus-code/ /app/
+COPY ruinedfooocus-code/ /app/ruinedfooocus/
 
 # Expose the port that RuinedFooocus listens on
 EXPOSE 7860
@@ -32,9 +32,9 @@ HEALTHCHECK --interval=60s --timeout=30s --retries=3 \
 # Add a volume.  This is good practice to allow the user to mount
 # a directory from the host machine.  This is commonly used for
 # storing generated images, models, or configuration.
-VOLUME /app/settings
-VOLUME /app/models
-VOLUME /app/wildcards
+VOLUME /app/ruinedfooocus/settings
+VOLUME /app/ruinedfooocus/models
+VOLUME /app/ruinedfooocus/wildcards
 
 # Command to run RuinedFooocus
 CMD ["python3", "launch.py", "--listen"]
