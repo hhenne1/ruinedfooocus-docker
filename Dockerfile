@@ -10,14 +10,16 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /app
 
-# Copy the necessary files from the main repository
-COPY . /app
+# Copy the necessary files from the main repository, WITHOUT the submodule
+COPY --exclude=ruinedfooocus-code . /app
 
 # Install the requirements for RuinedFooocus
 COPY ruinedfooocus-code/requirements_versions.txt /app/requirements_versions.txt
 RUN pip3 install -r requirements_versions.txt
-# Copy the RuinedFooocus code from the submodule.
+
+# Copy the RuinedFooocus code from the submodule, ensuring .git is not copied
 COPY ruinedfooocus-code/ /app/
+
 # Expose the port that RuinedFooocus listens on
 EXPOSE 7860
 
