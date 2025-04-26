@@ -18,7 +18,7 @@ COPY ruinedfooocus-code/requirements_versions.txt /fooocus/requirements_versions
 COPY ruinedfooocus-code/ /fooocus/
 WORKDIR /fooocus
 ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv $VIRTUAL_ENV
+RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip3 install -r requirements_versions.txt
 RUN pip3 install insightface==0.7.3 gfpgan==1.3.8 git+https://github.com/rodjjo/filterpy.git --require-virtualenv
