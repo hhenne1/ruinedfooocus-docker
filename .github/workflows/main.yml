@@ -17,13 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
 
       - name: Check for Submodule changes
         id: check_submodule
         run: |
-          #git diff --name-only --submodule | grep 'ruinedfooocus-code' || true
           git diff --name-only --submodule | grep 'ruinedfooocus-code'
           if [ -n "$(git diff --name-only --submodule | grep 'ruinedfooocus-code')" ]; then
             echo "SUBMODULE_CHANGED=true" >> $GITHUB_ENV
