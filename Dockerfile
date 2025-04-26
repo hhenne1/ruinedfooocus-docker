@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install necessary dependencies (e.g., Python, git)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    python3 python3-pip git && \
+    python3 python3-pip git python3.10-venv && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
@@ -18,7 +18,7 @@ COPY ruinedfooocus-code/requirements_versions.txt /fooocus/requirements_versions
 COPY ruinedfooocus-code/ /fooocus/
 WORKDIR /fooocus
 ENV VIRTUAL_ENV=/opt/venv
-RUN python -m venv $VIRTUAL_ENV
+RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip3 install -r requirements_versions.txt
 RUN pip3 install insightface==0.7.3 gfpgan==1.3.8 git+https://github.com/rodjjo/filterpy.git --require-virtualenv
