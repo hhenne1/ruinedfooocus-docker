@@ -7,7 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # copy RuinedFooocus submodule and install dependencies in a venv
-COPY ruinedfooocus/ /fooocus/
+COPY ruinedfooocus-code/ /fooocus/
 WORKDIR /fooocus
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
