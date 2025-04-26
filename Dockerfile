@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install necessary dependencies (e.g., Python, git)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    python3.10 python3.10-dev python3.10-pip python3.10-venv git && \
+    python3 python3.10-dev python3-pip python3.10-venv git && \
     build-essential libpq-dev libffi-dev && \
     rm -rf /var/lib/apt/lists/*
 
