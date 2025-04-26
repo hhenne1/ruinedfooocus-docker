@@ -1,10 +1,22 @@
-version: '3.8'
+
 services:
   ruinedfooocus:
-    image: ghcr.io/hhenne/ruinedfooocus:latest # Change this if you use a different username or image name
+    image: ghcr.io/hhenne/ruinedfooocus1:latest
+    container_name: ruinedfooocus
+    restart: unless-stopped
     ports:
       - 7860:7860
+    environment:
+      - TZ=Europe/Berlin
+      - CMDARGS=--listen --always-offload-from-vram
     volumes:
-      - ./ruinedfooocus-code:/app  # Mount the RuinedFooocus code
-      - ./outputs:/app/outputs     # Mount a local directory for outputs
-    restart: unless-stopped
+      - ./ruinedfooocus/settings:/app/settings
+      - ./ruinedfooocus/settings/wildcards:/app/wildcards
+      - ./ruinedfooocus/models:/app/models
+    deploy:
+        resources:
+            reservations:
+                devices:
+                    - driver: nvidia
+                      count: 1
+                      capabilities: [gpu]
