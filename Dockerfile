@@ -1,18 +1,13 @@
 FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install necessary dependencies (e.g., Python, git)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     python3 python3.10-dev python3-pip python3.10-venv git build-essential libpq-dev libffi-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Set the working directory
-WORKDIR /app
-COPY . /app
-
-# Install RuinedFooocus from the submodule
-COPY ruinedfooocus-code/ /fooocus/
+# copy RuinedFooocus submodule and install dependencies in a venv
+COPY ruinedfooocus/ /fooocus/
 WORKDIR /fooocus
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
@@ -20,7 +15,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install -r requirements_versions.txt
 RUN pip3 install gfpgan==1.3.8 filterpy insightface==0.7.3
-RUN pip3 install -r pip_modules.txt
 
 # Expose the port that RuinedFooocus listens on
 EXPOSE 7865
