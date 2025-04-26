@@ -19,8 +19,9 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install -r requirements_versions.txt
-RUN pip3 install gfpgan==1.3.8 filterpy
+RUN pip3 install gfpgan==1.3.8 filterpy insightface==0.7.3
 #RUN pip3 install insightface==0.7.3
+#RUN pip3 install -r pip_modules.txt
 
 # Expose the port that RuinedFooocus listens on
 EXPOSE 7865
@@ -30,7 +31,7 @@ HEALTHCHECK --interval=60s --timeout=30s --retries=3 \
     CMD curl -f http://localhost:7865/ || exit 1
 
 # Add volumes
-#VOLUME /fooocus/cache
+VOLUME /fooocus/cache
 VOLUME /fooocus/settings
 VOLUME /fooocus/models
 VOLUME /fooocus/wildcards
