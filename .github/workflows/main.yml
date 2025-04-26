@@ -27,7 +27,7 @@ jobs:
           if [ -n "$(git diff --name-only --submodule | grep 'ruinedfooocus-code')" ]; then
             echo "SUBMODULE_CHANGED=true" >> $GITHUB_ENV
           else
-            echo "SUBMODULE_CHANGED=true" >> $GITHUB_ENV
+            echo "SUBMODULE_CHANGED=false" >> $GITHUB_ENV
           fi
 
       - name: Set up Docker Buildx
