@@ -4,17 +4,14 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install necessary dependencies (e.g., Python, git)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    python3 python3-pip git python3.10-venv && \
+    python3 python3-pip git python3.10-venv python3.10-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
 WORKDIR /app
 COPY . /app
 
-# Install the requirements for RuinedFooocus
-COPY ruinedfooocus-code/requirements_versions.txt /fooocus/requirements_versions.txt
-
-# Copy the RuinedFooocus code from the submodule
+# Install RuinedFooocus from the submodule
 COPY ruinedfooocus-code/ /fooocus/
 WORKDIR /fooocus
 ENV VIRTUAL_ENV=/opt/venv
