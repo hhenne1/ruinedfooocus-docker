@@ -1,4 +1,4 @@
-[submodule "ruinedfooocus"]
+[submodule "ruinedfooocus-code"]
 	path = ruinedfooocus
 	url = https://github.com/runew0lf/RuinedFooocus.git
 	branch = development
