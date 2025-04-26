@@ -45,5 +45,5 @@ jobs:
       - name: Build and push Docker image
         if: env.SUBMODULE_CHANGED == 'true'
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/ruinedfooocus:latest ./ruinedfooocus-code
+          docker build -t ghcr.io/${{ github.repository_owner }}/ruinedfooocus:latest
           docker push ghcr.io/${{ github.repository_owner }}/ruinedfooocus:latest
