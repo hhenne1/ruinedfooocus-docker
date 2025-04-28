@@ -12,7 +12,7 @@ services:
       - /your/path:/fooocus/cache
       - /your/path:/fooocus/settings
       - /your/path:/fooocus/wildcards
-      - /your/path:/fooocus/models/checkpoints
+      - /your/path:/fooocus/models
       - /your/path:/fooocus/outputs
     deploy:
         resources:
