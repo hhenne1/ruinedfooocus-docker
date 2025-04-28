@@ -5,7 +5,7 @@ services:
     container_name: ruinedfooocus
     restart: unless-stopped
     ports:
-      - "7865:7865"
+      - "7860:7860"
     environment:
       - TZ=Canada/Eastern
     volumes:
@@ -13,6 +13,7 @@ services:
       - /your/path:/fooocus/settings
       - /your/path:/fooocus/wildcards
       - /your/path:/fooocus/models/checkpoints
+      - /your/path:/fooocus/outputs
     deploy:
         resources:
             reservations:
