@@ -17,7 +17,7 @@ RUN pip3 install -r requirements_versions.txt
 RUN pip3 install gfpgan==1.3.8 filterpy insightface==0.7.3 torchaudio
 
 # Expose the port that RuinedFooocus listens on
-EXPOSE 7865
+EXPOSE 7860
 
 # Define a healthcheck.
 HEALTHCHECK --interval=60s --timeout=30s --retries=3 \
@@ -28,6 +28,7 @@ VOLUME /fooocus/cache
 VOLUME /fooocus/settings
 VOLUME /fooocus/models
 VOLUME /fooocus/wildcards
+VOLUME /fooocus/outputs
 
 # Startup
 CMD ["python3", "launch.py", "--listen"]
